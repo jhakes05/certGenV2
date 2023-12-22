@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <CertificateGenerator name="Norman Badong" course="Web Development" instructor="Joshua Allada" />
+      <CertificateGenerator name="Rafael Luigi Rayo" course="HTML and CSS" instructor="Joshua Allada" />
     </>
   )
 }

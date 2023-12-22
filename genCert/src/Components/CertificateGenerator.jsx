@@ -15,19 +15,19 @@ const generateCertificate = async (name, course, instructor) => {
   doc.addImage(img, 'PNG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
 
   // Add recipient name
-  doc.setFontSize(75);
+  doc.setFontSize(48);
   doc.setTextColor(162, 123, 66);
   doc.setFont('helvetica'); // Change the font family and style
   const recipientNameTextWidth = doc.getStringUnitWidth(name) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-  const recipientPosition = 170 + (320 - 170) / 2 - recipientNameTextWidth / 2;
-  doc.text(name, recipientPosition, 105, { align: 'center' }); // 105 and 160: horizontal and vertical positions of the text
+  const recipientPosition = 70 + (225 - 70) / 2 - recipientNameTextWidth / 2;
+  doc.text(name, recipientPosition, 103, { align: 'left' }); // 105 and 160: horizontal and vertical positions of the text
 
   // Add course name
   doc.setFontSize(20);
   doc.setTextColor(162, 123, 66);
   const courseTextWidth = doc.getStringUnitWidth(course) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-  const coursePosition = 170 + (275 - 170) / 2 - courseTextWidth / 2;
-  doc.text(course, coursePosition, 117, { align: 'center' }); // 105 and 195: horizontal and vertical positions of the text
+  const coursePosition = 140 + (245 - 140) / 2 - courseTextWidth / 2;
+  doc.text(course, coursePosition, 117, { align: 'left' }); // 105 and 195: horizontal and vertical positions of the text
 
    // Add instructor name
   // Calculate the center position
