@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import CertificateGenerator from './CertificateGenerator';
 <<<<<<< HEAD
+<<<<<<< HEAD
 function UserList() {
   const [users, setUsers] = useState([]);
   const [instructors, setInstructors] = useState([]);
@@ -29,6 +30,8 @@ console.log(instructors)
     } 
   };
 =======
+=======
+>>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -45,11 +48,15 @@ function UserList() {
   }, []);
 
   console.log('Rendering UserList:', users);
+<<<<<<< HEAD
+>>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
+=======
 >>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
 
   return (
     <div>
       <h1>User List</h1>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <ul>
         {users.map(user => (
@@ -78,6 +85,8 @@ function UserList() {
         
       </ul>
 =======
+=======
+>>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
       <table>
         <thead>
           <tr>
@@ -110,6 +119,9 @@ function UserList() {
           ))}
         </tbody>
       </table>
+<<<<<<< HEAD
+>>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
+=======
 >>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
     </div>
   );
