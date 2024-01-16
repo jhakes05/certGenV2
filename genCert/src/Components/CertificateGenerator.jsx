@@ -44,6 +44,13 @@ function CertificateGenerator(props) {
     const coursePosition = 140 + (245 - 140) / 2 - courseTextWidth / 2;
     doc.text(course, coursePosition, 117, { align: 'left' });
 
+    // New date generator below the course with font size 20
+    const newDate = new Date();
+    const formattedNewDate = newDate.toLocaleDateString();
+    doc.setFontSize(20);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`${formattedNewDate}`, coursePosition + -55, 128, { align: 'left' }); // Adjusted vertical position
+
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
     const instructorTextWidth = doc.getStringUnitWidth(instructor) * doc.internal.getFontSize() / doc.internal.scaleFactor;
@@ -61,7 +68,7 @@ function CertificateGenerator(props) {
     doc.setTextColor(0, 0, 0);
     doc.text(`Batch_55-${serialNumber}`, 85, 158, { align: 'left' });
 
-    // Include current date
+    // Original date generator
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
     doc.setFontSize(11);
