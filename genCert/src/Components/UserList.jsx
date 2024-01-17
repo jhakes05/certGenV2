@@ -1,18 +1,19 @@
 // UserList.jsx
 import React, { useState, useEffect } from 'react';
 import CertificateGenerator from './CertificateGenerator';
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 function UserList() {
   const [users, setUsers] = useState([]);
   const [instructors, setInstructors] = useState([]);
-console.log(instructors)
+  const [searchTerm, setSearchTerm] = useState('');
+  const [scrollVisible, setScrollVisible] = useState(false);
+
   useEffect(() => {
     // Fetch user data from your Spring Boot API endpoint
     fetch('http://localhost:8080/GUsers')
       .then(response => response.json())
       .then(data => setUsers(data));
-    
+
     // Fetch instructor data from your Spring Boot API endpoint
     fetch('http://localhost:8080/GInstructor')
       .then(response => response.json())
@@ -20,109 +21,109 @@ console.log(instructors)
   }, []);
 
   const getInstructorName = (instructorId) => {
-    // Check if instructorId is defined
     if (instructorId !== undefined) {
       const instructor = instructors.find(inst => inst.instructorID === instructorId);
-      console.log('Instructors array:', instructors);
-      console.log(`InstructorID: ${instructorId}, Instructor:`, instructor);
-
       return instructor ? instructor.full_name : 'Unknown Instructor';
-    } 
+    }
   };
-=======
-=======
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
 
-function UserList() {
-  const [users, setUsers] = useState([]);
+  const filteredUsers = users.filter(user =>
+    user.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+
+    // Show the button when the user scrolls down 200 pixels
+    if (scrollY > 200) {
+      setScrollVisible(true);
+    } else {
+      setScrollVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
-    console.log('Fetching users...');
-    fetch('http://localhost:8080/api/users/all')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Fetched users:', data);
-        setUsers(data);
-      })
-      .catch(error => console.error('Error fetching users:', error));
-  }, []);
+    window.addEventListener('scroll', handleScroll);
 
-  console.log('Rendering UserList:', users);
-<<<<<<< HEAD
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
-=======
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div>
       <h1>User List</h1>
-<<<<<<< HEAD
-<<<<<<< HEAD
+      <input
+        type="text"
+        placeholder="Search by name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <ul>
-        {users.map(user => (
+        {filteredUsers.map(user => (
           <li key={user.userID}>
             {user.full_name} - {user.username} - {user.email}
-            {/* certificate generator is not in the right map */}
-            {instructors.map((instructor, idx) => {
-                return (
-                    <div key={idx}>
-
-                    {/* Fetch instructor name using the getInstructorName function */}
-                    Instructor: {getInstructorName(instructor.instructorID)}
-                    {/* Add a button to generate the certificate for this user */}
-
-                    <CertificateGenerator
-                    
-                    name={user.full_name}
-                    course="HTML and CSS" // You may need to get the course data from your API
-                    instructor={getInstructorName(instructor.instructorID)}
-                    />
-                    </div>
-                )
-            })}
-          </li>
-        ))}
-        
-      </ul>
-=======
-=======
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Profile</th>
-            <th>Course</th>
-            <th>Instructor</th>
-            <th>Download Certificate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.userID}>
-              <td>{user.full_name}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.profile}</td>
-              <td>{user.course ? user.course.courseName : 'N/A'}</td>
-              <td>{user.instructor ? user.instructor.instructorName : 'N/A'}</td>
-              <td>
+            {instructors.map((instructor, idx) => (
+              <div key={idx}>
+                Instructor: {getInstructorName(instructor.instructorID)}
                 <CertificateGenerator
                   name={user.full_name}
-                  course={user.course ? user.course.courseName : 'N/A'}
-                  instructor={user.instructor ? user.instructor.instructorName : 'N/A'}
+                  course="HTML and CSS" // You may need to get the course data from your API
+                  instructor={getInstructorName(instructor.instructorID)}
                 />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-<<<<<<< HEAD
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
-=======
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
+              </div>
+            ))}
+          </li>
+        ))}
+      </ul>
+      
+      {/* Back-to-top arrow icon */}
+      {scrollVisible && (
+        <div
+          onClick={scrollToTop}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            padding: '10px',
+            cursor: 'pointer',
+            backgroundColor: '#ffffff',
+            borderRadius: '50%',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 20V4"
+              stroke="#000000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M18 10L12 4L6 10"
+              stroke="#000000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 }

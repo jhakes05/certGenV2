@@ -5,15 +5,7 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
-<<<<<<< HEAD
       {/* <CertificateGenerator name="Rafael Luigi Rayo" course="HTML and CSS" instructor="Joshua Allada" /> */}
-=======
-      {/* <CertificateGenerator name="Juan Dela Cruz" course="HTML and CSS" instructor="Norman Badong" /> */}
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
-=======
-      {/* <CertificateGenerator name="Juan Dela Cruz" course="HTML and CSS" instructor="Norman Badong" /> */}
->>>>>>> 5d970e5dd9bef3f0896c93433fc6f10bcf9366f8
       <UserList/>
     </>
   )
